@@ -1,29 +1,35 @@
-/* General Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-color: #0a2342;
+    --secondary-color: #2ca5b8;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
     line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-h1, h2, h3 {
-    font-weight: 600;
-}
-
-/* Header */
 header {
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: background-color 0.3s ease;
 }
 
 nav {
@@ -33,10 +39,9 @@ nav {
     padding: 1rem 2rem;
 }
 
-.logo h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    color: #0a2342;
+.logo img {
+    height: 50px;
+    width: auto;
 }
 
 .nav-links {
@@ -52,62 +57,90 @@ nav {
 
 .nav-links a {
     text-decoration: none;
-    color: #0a2342;
-    font-weight: 500;
+    color: var(--primary-color);
+    font-weight: 600;
     transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
 }
 
-.nav-links a:hover {
-    color: #2ca5b8;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--secondary-color);
+    transition: width 0.3s ease;
 }
 
-/* Hero Section */
+.nav-links a:hover::after {
+    width: 100%;
+}
+
 #hero {
-    background-color: #0a2342;
+    background: linear-gradient(45deg, var(--primary-color), #1a4a8d);
+    background-size: cover;
+    background-position: center;
     color: #fff;
     text-align: center;
-    padding: 4rem 2rem;
+    padding: 6rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .hero-content h2 {
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
-/* About Section */
-#about {
-    padding: 4rem 2rem;
-    background-color: #fff;
+.hero-content p {
+    font-size: 1.25rem;
+    font-weight: 300;
 }
 
-#about h2 {
+section {
+    padding: 5rem 2rem;
+}
+
+section h2 {
     text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
     margin-bottom: 2rem;
 }
 
-/* Careers Section */
-#careers {
-    padding: 4rem 2rem;
-}
-
-#careers h2 {
+#about .card {
     text-align: center;
-    margin-bottom: 2rem;
 }
 
-.job-opening {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+#careers .job-opening {
+    border-left: 5px solid var(--secondary-color);
+    padding-left: 2rem;
 }
 
-/* Footer */
+.job-opening h3 {
+    color: var(--primary-color);
+    font-size: 1.75rem;
+}
+
 footer {
-    background-color: #0a2342;
+    background-color: var(--primary-color);
     color: #fff;
     text-align: center;
-    padding: 2rem;
+    padding: 3rem 2rem;
 }
 
 .menu-toggle {
@@ -115,16 +148,24 @@ footer {
     cursor: pointer;
 }
 
-/* Responsive Design */
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
         flex-direction: column;
         width: 100%;
         position: absolute;
-        top: 60px;
+        top: 70px;
         left: 0;
-        background-color: #fff;
+        background-color: var(--card-bg);
+        box-shadow: var(--shadow);
     }
 
     .nav-links.active {
@@ -133,18 +174,14 @@ footer {
 
     .nav-links li {
         text-align: center;
-        margin: 1rem 0;
+        margin: 1.5rem 0;
     }
 
     .menu-toggle {
         display: block;
-        cursor: pointer;
     }
 
-    .menu-toggle .bar {
-        width: 25px;
-        height: 3px;
-        background-color: #0a2342;
-        margin: 5px 0;
+    .hero-content h2 {
+        font-size: 2.5rem;
     }
 }
